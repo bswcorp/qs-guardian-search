@@ -1,50 +1,47 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <title>Portal Layanan Quorum-State</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QS-Guardian Portal</title>
     <style>
-        body { font-family: sans-serif; background: #1a1a1a; color: #eee; padding: 20px; }
-        input { width: 100%; padding: 10px; margin-bottom: 20px; border-radius: 5px; border: none; }
-        .result { background: #2a2a2a; padding: 15px; margin-bottom: 10px; border-left: 4px solid #00d4ff; }
-        .path { font-size: 0.8em; color: #888; }
+        body { font-family: 'Courier New', Courier, monospace; background: #0d1117; color: #58a6ff; padding: 20px; line-height: 1.6; }
+        .container { max-width: 800px; margin: auto; border: 1px solid #30363d; padding: 20px; border-radius: 8px; }
+        h1 { color: #ffffff; border-bottom: 1px solid #30363d; padding-bottom: 10px; }
+        input { width: 97%; padding: 12px; background: #161b22; border: 1px solid #30363d; color: #c9d1d9; border-radius: 5px; margin-bottom: 20px; outline: none; }
+        .result-item { background: #161b22; border: 1px solid #30363d; padding: 15px; margin-bottom: 10px; border-radius: 6px; transition: 0.3s; }
+        .result-item:hover { border-color: #58a6ff; }
+        .tag { background: #238636; color: white; padding: 2px 8px; border-radius: 10px; font-size: 0.7em; }
     </style>
 </head>
 <body>
-    <h2>Bungker Layanan: Firewall of Jakarta Aktif</h2>
-    <input type="text" id="searchInput" placeholder="Cari layanan, dokumentasi, atau MayaWare module...">
-    <div id="results"></div>
+    <div class="container">
+        <h1>🛡️ QS-Guardian Portal</h1>
+        <p>Status: <span class="tag">Firewall Jakarta Active</span></p>
+        <input type="text" id="search" placeholder="Ketik untuk mencari layanan/modul...">
+        <div id="display"></div>
+    </div>
 
     <script>
-        let searchData = [];
-        // Mengambil data dari hasil indexer.py
-        fetch('../search_index.json')
-            .then(response => response.json())
-            .then(data => { searchData = data; });
+        const searchInput = document.getElementById('search');
+        const display = document.getElementById('display');
+        let dataIndex = [];
 
-        const searchInput = document.getElementById('searchInput');
-        const resultsDiv = document.getElementById('results');
+        fetch('search_index.json')
+            .then(res => res.json())
+            .then(data => { dataIndex = data; })
+            .catch(() => { display.innerHTML = "<p style='color:red'>Data index belum tersedia. Jalankan indexer.py</p>"; });
 
-        searchInput.addEventListener('input', (e) => {
-            const term = e.target.value.toLowerCase();
-            resultsDiv.innerHTML = '';
-            
-            if (term.length < 2) return;
+        searchInput.oninput = () => {
+            const val = searchInput.value.toLowerCase();
+            display.innerHTML = '';
+            if(val.length < 2) return;
 
-            const filtered = searchData.filter(item => 
-                item.title.toLowerCase().includes(term) || 
-                item.snippet.toLowerCase().includes(term)
-            );
-
-            filtered.forEach(item => {
-                resultsDiv.innerHTML += `
-                    <div class="result">
-                        <strong>${item.title}</strong><br>
-                        <small>${item.snippet}...</small><br>
-                        <span class="path">${item.path}</span>
-                    </div>`;
-            });
-        });
+            dataIndex.filter(i => i.title.toLowerCase().includes(val) || i.snippet.toLowerCase().includes(val))
+                     .forEach(i => {
+                        display.innerHTML += `<div class="result-item"><strong>${i.title}</strong><br><small>${i.snippet}</small></div>`;
+                     });
+        };
     </script>
 </body>
 </html>
