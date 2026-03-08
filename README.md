@@ -1,4 +1,4 @@
-# 🛡️ QS-Guardian: Sovereign Banking Infrastructure
+Collectivective QS-Guardian: Sovereign Banking Infrastructure
 
 **"Layanan Finance Untuk Rakyat - Powered by MayaWare"**
 
@@ -35,7 +35,7 @@ Kami sedang menggalang dukungan melalui **Open Collective**. Setiap kontribusi d
  */
 
 
-**[Donasi di Open Collective]https://opencollective.com/qstate)**
+**[Donasi di Open Collective](https://opencollective.com/qstate)**
 
 ---
 *Built with passion and sovereignty by bswcorp.*
