@@ -1,0 +1,20 @@
+[
+    {
+        "title": "LICENSE",
+        "path": "./LICENSE",
+        "snippet": "AGPL-3.0 License. Hak cipta dilindungi oleh kedaulatan digital Quorum-State.",
+        "last_updated": "2024-05-20"
+    },
+    {
+        "title": "README.md",
+        "path": "./README.md",
+        "snippet": "qs-guardian: Protokol pertahanan dan layanan finansial untuk rakyat. Firewall of Jakarta aktif.",
+        "last_updated": "2024-05-20"
+    },
+    {
+        "title": "MayaWare Core",
+        "path": "./indexer.py",
+        "snippet": "Script pengindeks otomatis untuk mesin pencari portal layanan.",
+        "last_updated": "2024-05-20"
+    }
+]
