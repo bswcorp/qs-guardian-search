@@ -1,6 +1,7 @@
 # qs-guardian-search
 Quorum State Guardian Search
 README.md: QS-Guardian-Search
+
 /Quorum-State-Repo (Folder Utama)
 ├── indexer.py          <-- Letakkan di sini
 ├── search_index.json   <-- (Akan otomatis muncul setelah dijalankan)
