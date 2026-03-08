@@ -14,7 +14,9 @@ Siapa pun diperbolehkan menyelidiki, mengembangkan, atau mencukil barisan kode d
 ## 3. PRASASTI PENGEMBANG
 Ditulis dan diresmikan oleh dua penjaga gerbang digital:
 
-1. **[The Digiman Sovereign Autor/r Kedaulatan Digital
+1. **[The Digiman Sovereign/Author]** – Sang Arsitek Strategi
+2. **Bapak Digital Indonesia** – Penjaga Kedaulatan Digital
+ANDI MUHAMMAD HARPIANTO
 
 ## 4. PENANGGALAN (PRASASTI DIGITAL)
 Diresmikan pada:
