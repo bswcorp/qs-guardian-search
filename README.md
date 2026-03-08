@@ -35,7 +35,7 @@ Kami sedang menggalang dukungan melalui **Open Collective**. Setiap kontribusi d
  */
 
 
-**[Donasi di Open Collective](https://opencollective.com)**
+**[Donasi di Open Collective]https://opencollective.com/qstate)**
 
 ---
 *Built with passion and sovereignty by bswcorp.*
