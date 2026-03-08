@@ -1,1 +1,46 @@
+body {
+    background-color: #000;
+    color: #fff;
+    font-family: 'Courier New', Courier, monospace;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.background-aksara {
+    position: fixed;
+    font-size: 5rem;
+    opacity: 0.05;
+    white-space: nowrap;
+    z-index: -1;
+    user-select: none;
+}
+
+.search-box {
+    border: 1px solid #333;
+    padding: 15px;
+    border-radius: 5px;
+    background: rgba(10, 10, 10, 0.8);
+}
+
+input {
+    background: transparent;
+    border: none;
+    color: #0f0;
+    font-size: 24px;
+    text-align: center;
+    width: 250px;
+    outline: none;
+}
+
+#status {
+    margin-top: 20px;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-align: center;
+    color: #555;
+}
 
