@@ -1,0 +1,41 @@
+import os
+import json
+from datetime import datetime
+
+# Konfigurasi Path
+REPO_PATH = "./"  # Folder yang akan diindeks
+OUTPUT_FILE = "search_index.json"
+IGNORE_DIRS = [".git", "__pycache__", "node_modules", "sandbox"]
+
+def build_index():
+    index_data = []
+    print(f"[*] Memulai pengindeksan di {REPO_PATH}...")
+    
+    for root, dirs, files in os.walk(REPO_PATH):
+        # Abaikan folder yang tidak perlu
+        dirs[:] = [d for d in dirs if d not in IGNORE_DIRS]
+        
+        for file in files:
+            if file.endswith(('.md', '.txt', '.py', '.html', '.js')):
+                file_path = os.path.join(root, file)
+                try:
+                    with open(file_path, 'r', encoding='utf-8', errors='ignore') as f:
+                        content = f.read()
+                        
+                    index_data.append({
+                        "title": file,
+                        "path": file_path,
+                        "snippet": content[:200].replace("\n", " "), # Cuplikan isi
+                        "last_updated": str(datetime.fromtimestamp(os.path.getmtime(file_path)))
+                    })
+                except Exception as e:
+                    print(f"[!] Gagal membaca {file}: {e}")
+
+    # Simpan sebagai database JSON sederhana untuk Portal
+    with open(OUTPUT_FILE, 'w') as f:
+        json.dump(index_data, f, indent=4)
+    
+    print(f"[+] Indeks selesai! {len(index_data)} file terdaftar di {OUTPUT_FILE}")
+
+if __name__ == "__main__":
+    build_index()
