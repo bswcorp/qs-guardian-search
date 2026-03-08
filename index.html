@@ -3,45 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QS-Guardian Portal</title>
-    <style>
-        body { font-family: 'Courier New', Courier, monospace; background: #0d1117; color: #58a6ff; padding: 20px; line-height: 1.6; }
-        .container { max-width: 800px; margin: auto; border: 1px solid #30363d; padding: 20px; border-radius: 8px; }
-        h1 { color: #ffffff; border-bottom: 1px solid #30363d; padding-bottom: 10px; }
-        input { width: 97%; padding: 12px; background: #161b22; border: 1px solid #30363d; color: #c9d1d9; border-radius: 5px; margin-bottom: 20px; outline: none; }
-        .result-item { background: #161b22; border: 1px solid #30363d; padding: 15px; margin-bottom: 10px; border-radius: 6px; transition: 0.3s; }
-        .result-item:hover { border-color: #58a6ff; }
-        .tag { background: #238636; color: white; padding: 2px 8px; border-radius: 10px; font-size: 0.7em; }
-    </style>
+    <title>Q-State | AJ Engine</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <h1>🛡️ QS-Guardian Portal</h1>
-        <p>Status: <span class="tag">Firewall Jakarta Active</span></p>
-        <input type="text" id="search" placeholder="Ketik untuk mencari layanan/modul...">
-        <div id="display"></div>
+    <!-- Aksara Nusantara sebagai Magnet Background -->
+    <div class="background-aksara">
+        ꦱꦪꦕꦶꦤ꧀ꦠꦱꦾꦫꦥ꦳꧀ꦏꦸꦱꦼꦤ꧀ꦢꦶꦫꦶ
     </div>
 
-    <script>
-        const searchInput = document.getElementById('search');
-        const display = document.getElementById('display');
-        let dataIndex = [];
+    <div class="container">
+        <div class="search-box">
+            <!-- Kotak Mesin Pencari AJ -->
+            <input type="text" id="aj-input" placeholder="[ . . . ]" autofocus autocomplete="off">
+        </div>
+        <p id="status">Saraf Terhubung ke Q-Net</p>
+    </div>
 
-        fetch('search_index.json')
-            .then(res => res.json())
-            .then(data => { dataIndex = data; })
-            .catch(() => { display.innerHTML = "<p style='color:red'>Data index belum tersedia. Jalankan indexer.py</p>"; });
-
-        searchInput.oninput = () => {
-            const val = searchInput.value.toLowerCase();
-            display.innerHTML = '';
-            if(val.length < 2) return;
-
-            dataIndex.filter(i => i.title.toLowerCase().includes(val) || i.snippet.toLowerCase().includes(val))
-                     .forEach(i => {
-                        display.innerHTML += `<div class="result-item"><strong>${i.title}</strong><br><small>${i.snippet}</small></div>`;
-                     });
-        };
-    </script>
+    <!-- Panggil Saraf Digital -->
+    <script src="script.js"></script>
 </body>
 </html>
