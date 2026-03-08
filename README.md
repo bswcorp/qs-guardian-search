@@ -1,6 +1,15 @@
 # qs-guardian-search
 Quorum State Guardian Search
 README.md: QS-Guardian-Search
+/Quorum-State-Repo (Folder Utama)
+├── indexer.py          <-- Letakkan di sini
+├── search_index.json   <-- (Akan otomatis muncul setelah dijalankan)
+├── maya_ware/          (Folder middleware Anda)
+├── portal/             (Folder frontend/situs sederhana)
+│   ├── index.html
+│   └── search.js
+└── data/               (Isi file yang ingin dicari)
+
 🛡️ QS-Guardian-Search: Sovereign Search & Citizen Radar
 "Karena setiap harapan dalam antrean rakyat adalah amanat yang harus dijaga."
 
