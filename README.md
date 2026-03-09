@@ -1,8 +1,8 @@
-Collectivective QS-Guardian: Sovereign Banking Infrastructure
+# Collectivective QS-Guardian: Sovereign Banking Infrastructure
 
 **"Layanan Finance Untuk Rakyat - Powered by MayaWare"**
 
-QS-Guardian adalah modul pertahanan dan gerbang layanan utama dalam ekosistem **Quorum-State**. Dirancang untuk beroperasi di balik **Firewall of Jakarta**, memastikan kedaulatan data dan transaksi finansial tetap mandiri dan aman.
+### QS-Guardian adalah modul pertahanan dan gerbang layanan utama dalam ekosistem **Quorum-State**. Dirancang untuk beroperasi di balik **Firewall of Jakarta**, memastikan kedaulatan data dan transaksi finansial tetap mandiri dan aman.
 
 ## 🚀 Status Proyek: Phase 1 (Bootstrap Berdikari)
 Saat ini kami sedang membangun **Portal Layanan Terpadu** dengan fokus pada:
