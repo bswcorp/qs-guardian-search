@@ -11,11 +11,7 @@
             margin: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; overflow: hidden;
             transition: background 1s ease;
         }
-        
-        /* Aksara Background - Identitas Nusantara */
         .background-aksara { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 4rem; opacity: 0.03; white-space: nowrap; z-index: -1; color: var(--gold); }
-
-        /* SENTINEL MONITOR (PEMANTAU INFRASTRUKTUR) */
         .sentinel-box {
             position: fixed; top: 20px; left: 20px; width: 250px; 
             background: rgba(0,0,0,0.8); border: 1px solid var(--gold); 
@@ -24,8 +20,6 @@
         }
         .status-dot { height: 8px; width: 8px; border-radius: 50%; display: inline-block; margin-right: 5px; animation: blink 1.5s infinite; }
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
-
-        /* SEARCH BOX (MESIN PENCARI AJ) */
         .container { text-align: center; width: 100%; max-width: 600px; }
         .search-box input {
             width: 100%; padding: 20px; background: #000; border: 2px solid var(--gold); 
@@ -33,37 +27,29 @@
             box-shadow: 0 0 20px rgba(212, 175, 55, 0.3); outline: none; transition: 0.3s;
         }
         .search-box input:focus { box-shadow: 0 0 40px var(--neon); border-color: var(--neon); }
-
-        /* HUB INTEGRASI */
         .titan-hub { margin-top: 30px; display: flex; gap: 10px; justify-content: center; }
         .btn-hub { padding: 8px 15px; border: 1px solid var(--gold); color: var(--gold); text-decoration: none; font-size: 0.7rem; border-radius: 5px; transition: 0.3s; font-weight: bold; }
         .btn-hub:hover { background: var(--gold); color: #000; box-shadow: 0 0 15px var(--gold); }
-
-        /* KILL-SWITCH STYLING */
         #killSwitch {
             width: 100%; background: #220000; color: var(--red); border: 1px solid var(--red); 
             padding: 8px; cursor: pointer; font-size: 0.6rem; letter-spacing: 2px; 
             font-weight: bold; margin-top: 15px; text-transform: uppercase;
         }
-        #killSwitch:hover { background: var(--red); color: white; }
+        #status { margin-top: 15px; font-size: 0.9rem; letter-spacing: 2px; height: 20px; }
     </style>
 </head>
 <body>
 
-    <!-- AUDIO TIK-TIK (KOMPUTER SUPER) -->
     <audio id="tickSound" src="https://www.soundjay.com"></audio>
 
     <div class="background-aksara">ꦱꦪꦕꦶꦤ꧀ꦠꦱꦾꦫꦥ꦳꧀ꦏꦸꦱꦼꦤ꧀ꦢꦶꦫꦶ</div>
 
-    <!-- SENTINEL SYSTEM MONITOR -->
     <div class="sentinel-box">
         <b style="color: var(--gold); display: block; margin-bottom: 10px;">🛡️ SENTINEL V1.0 ACTIVE</b>
         <div><span class="status-dot" style="background: #4ade80;"></span> CORE INFRA: <span id="s-core">STABLE</span></div>
         <div><span class="status-dot" style="background: var(--neon);"></span> SENSOR H2K: <span id="s-sensor">CONNECTED</span></div>
         <div><span class="status-dot" style="background: var(--gold);"></span> DATABASE: <span id="s-db">SYNCED</span></div>
         <div id="check-timer" style="margin-top: 10px; color: #666; font-size: 0.6rem;">Next Scan: 60s</div>
-        
-        <!-- KILL-SWITCH BUTTON -->
         <button id="killSwitch">☢️ EMERGENCY KILL-SWITCH</button>
     </div>
 
@@ -72,6 +58,7 @@
         <div class="search-box">
             <input type="text" id="aj-input" placeholder="[ SCANNING NEURAL ]" autofocus autocomplete="off">
         </div>
+        <p id="status">Saraf Terhubung ke Q-Net</p>
         
         <div class="titan-hub">
             <a href="https://www.qstate.abrdns.com" class="btn-hub">🏛️ BANK PORTAL</a>
@@ -80,124 +67,72 @@
     </div>
 
     <script>
-        // 1. EFEK SUARA TIK-TIK MEKANIK
         const input = document.getElementById('aj-input');
         const tick = document.getElementById('tickSound');
-        
+        const statusEl = document.getElementById('status');
+
+        // 1. EFEK SUARA TIK-TIK
         input.addEventListener('input', () => {
-            tick.currentTime = 0; // Reset agar bisa bunyi beruntun
+            tick.currentTime = 0;
             tick.play();
         });
 
-        // 2. LOGIKA SENTINEL (PEMINDAIAN TIAP 60 DETIK)
+        // 2. JURUS PENCARIAN AJ
+        async function cariDiQNet(keyword) {
+            try {
+                const response = await fetch('search_index.json');
+                if (!response.ok) throw new Error("Index JSON not found.");
+                const data = await response.json();
+                
+                const hasil = data.filter(file => 
+                    file.title.toLowerCase().includes(keyword.toLowerCase()) || 
+                    file.snippet.toLowerCase().includes(keyword.toLowerCase())
+                );
+
+                if (hasil.length > 0) {
+                    statusEl.innerText = "Ditemukan: " + hasil[0].title;
+                    statusEl.style.color = "var(--neon)";
+                    input.style.borderColor = "var(--neon)";
+                    input.style.boxShadow = "0 0 50px var(--neon)";
+                    setTimeout(() => { 
+                        input.style.borderColor = "var(--gold)"; 
+                        input.style.boxShadow = "0 0 20px rgba(212, 175, 55, 0.3)";
+                    }, 500);
+                } else {
+                    statusEl.innerText = "Data tidak ditemukan di Q-Net.";
+                    statusEl.style.color = "var(--red)";
+                }
+            } catch (err) {
+                statusEl.innerText = "SENTINEL: Database Offline.";
+            }
+        }
+
+        input.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') cariDiQNet(input.value);
+        });
+
+        // 3. SENTINEL SCANNER
         let seconds = 60;
         setInterval(() => {
             seconds--;
             document.getElementById('check-timer').innerText = "Next Scan: " + seconds + "s";
-            
             if (seconds <= 0) {
                 seconds = 60;
-                // Simulasi Cek Kelemahan (Randomizer)
                 const rand = Math.random();
-                const coreStatus = document.getElementById('s-core');
-                coreStatus.innerText = rand > 0.1 ? "STABLE" : "OVERLOAD";
-                coreStatus.style.color = rand > 0.1 ? "#4ade80" : "#ff3e3e";
+                document.getElementById('s-core').innerText = rand > 0.1 ? "STABLE" : "OVERLOAD";
+                document.getElementById('s-core').style.color = rand > 0.1 ? "#4ade80" : "#ff3e3e";
             }
         }, 1000);
 
-        // 3. PROTOKOL KILL-SWITCH (BUMI HANGUS DIGITAL)
-        document.getElementById('killSwitch').onclick = function() {
-            let confirmAction = confirm("KONFIRMASI: Aktifkan Protokol Bumi Hangus?");
-            if (confirmAction) {
-                alert("SYSTEM LOCKED. DATA CENTER SECURED. STATUS: MERDEKA ATAU MATI.");
+        // 4. KILL-SWITCH
+        document.getElementById('killSwitch').onclick = () => {
+            if (confirm("AKTIFKAN PROTOKOL BUMI HANGUS?")) {
+                alert("SYSTEM LOCKED.");
                 document.body.style.background = "#330000";
-                document.getElementById('aj-input').placeholder = "SYSTEM OFFLINE";
-                document.getElementById('aj-input').disabled = true;
-                document.getElementById('s-core').innerText = "LOCKED";
-                document.getElementById('s-sensor').innerText = "DISCONNECTED";
+                input.disabled = true;
+                statusEl.innerText = "SYSTEM OFFLINE";
             }
         };
-// JURUS PENCARIAN AJ (Membaca file search_index.json)
-async function cariDiQNet(keyword) {
-    try {
-        const response = await fetch('search_index.json');
-        const data = await response.json();
-        
-        // Filter file yang isinya mirip dengan ketikan Bapak
-        const hasil = data.filter(file => 
-            file.title.toLowerCase().includes(keyword.toLowerCase()) || 
-            file.snippet.toLowerCase().includes(keyword.toLowerCase())
-        );
-
-        if (hasil.length > 0) {
-            console.log("SENTINEL: Menemukan " + hasil.length + " data relevan.");
-// JURUS PENCARIAN AJ (Membaca file search_index.json)
-async function cariDiQNet(keyword) {
-    // Pastikan kita ambil elemen inputnya dulu
-    const ajInput = document.getElementById('aj-input'); 
-    
-    try {
-        const response = await fetch('search_index.json');
-        if (!response.ok) throw new Error("Brankas JSON belum dibuat.");
-        
-        const data = await response.json();
-        
-        // Filter file yang isinya mirip dengan ketikan Bapak
-        const hasil = data.filter(file => 
-            file.title.toLowerCase().includes(keyword.toLowerCase()) || 
-            file.snippet.toLowerCase().includes(keyword.toLowerCase())
-        );
-
-        if (hasil.length > 0) {
-            console.log("SENTINEL: Menemukan " + hasil.length + " data relevan.");
-            
-            // Tampilkan Judul File pertama yang ditemukan di status
-            document.getElementById('status').innerText = "Ditemukan: " + hasil[0].title;
-            document.getElementById('status').style.color = "var(--neon)";
-
-            // --- EFEK KILAT NEON (Baris 133 ke atas) ---
-            ajInput.style.borderColor = "var(--neon)";
-            ajInput.style.boxShadow = "0 0 50px var(--neon)";
-            setTimeout(() => { 
-                ajInput.style.borderColor = "var(--gold)"; 
-                ajInput.style.boxShadow = "0 0 20px rgba(212, 175, 55, 0.3)";
-            }, 500);
-            // -------------------------------------------
-
-        } else {
-            document.getElementById('status').innerText = "Data tidak ditemukan di Q-Net.";
-            document.getElementById('status').style.color = "var(--red)";
-            
-            // Efek Getar/Merah jika tidak ditemukan
-            ajInput.style.borderColor = "var(--red)";
-            setTimeout(() => { ajInput.style.borderColor = "var(--gold)"; }, 500);
-        }
-    } catch (err) {
-        console.log("SENTINEL: " + err.message);
-        document.getElementById('status').innerText = "SENTINEL: Jalankan python3 indexer.py dulu!";
-    }
-}
-
-// Tambahkan ini di bawah baris document.getElementById('status')...
-input.style.borderColor = "var(--neon)";
-setTimeout(() => { input.style.borderColor = "var(--gold)"; }, 500);
-// Tampilkan cuplikan pertama di status
-            document.getElementById('status').innerText = "Ditemukan: " + hasil[0].title;
-        } else {
-            document.getElementById('status').innerText = "Data tidak ditemukan di Q-Net.";
-        }
-    } catch (err) {
-        console.log("SENTINEL: Brankas JSON belum siap.");
-    }
-}
-
-// Hubungkan ke Input AJ
-input.addEventListener('keypress', function (e) {
-    if (e.key === 'Enter') {
-        cariDiQNet(this.value);
-    }
-});
-
     </script>
 </body>
 </html>
