@@ -131,7 +131,10 @@ async function cariDiQNet(keyword) {
 
         if (hasil.length > 0) {
             console.log("SENTINEL: Menemukan " + hasil.length + " data relevan.");
-            // Tampilkan cuplikan pertama di status
+// Tambahkan ini di bawah baris document.getElementById('status')...
+input.style.borderColor = "var(--neon)";
+setTimeout(() => { input.style.borderColor = "var(--gold)"; }, 500);
+// Tampilkan cuplikan pertama di status
             document.getElementById('status').innerText = "Ditemukan: " + hasil[0].title;
         } else {
             document.getElementById('status').innerText = "Data tidak ditemukan di Q-Net.";
