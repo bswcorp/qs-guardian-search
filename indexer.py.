@@ -131,6 +131,53 @@ async function cariDiQNet(keyword) {
 
         if (hasil.length > 0) {
             console.log("SENTINEL: Menemukan " + hasil.length + " data relevan.");
+// JURUS PENCARIAN AJ (Membaca file search_index.json)
+async function cariDiQNet(keyword) {
+    // Pastikan kita ambil elemen inputnya dulu
+    const ajInput = document.getElementById('aj-input'); 
+    
+    try {
+        const response = await fetch('search_index.json');
+        if (!response.ok) throw new Error("Brankas JSON belum dibuat.");
+        
+        const data = await response.json();
+        
+        // Filter file yang isinya mirip dengan ketikan Bapak
+        const hasil = data.filter(file => 
+            file.title.toLowerCase().includes(keyword.toLowerCase()) || 
+            file.snippet.toLowerCase().includes(keyword.toLowerCase())
+        );
+
+        if (hasil.length > 0) {
+            console.log("SENTINEL: Menemukan " + hasil.length + " data relevan.");
+            
+            // Tampilkan Judul File pertama yang ditemukan di status
+            document.getElementById('status').innerText = "Ditemukan: " + hasil[0].title;
+            document.getElementById('status').style.color = "var(--neon)";
+
+            // --- EFEK KILAT NEON (Baris 133 ke atas) ---
+            ajInput.style.borderColor = "var(--neon)";
+            ajInput.style.boxShadow = "0 0 50px var(--neon)";
+            setTimeout(() => { 
+                ajInput.style.borderColor = "var(--gold)"; 
+                ajInput.style.boxShadow = "0 0 20px rgba(212, 175, 55, 0.3)";
+            }, 500);
+            // -------------------------------------------
+
+        } else {
+            document.getElementById('status').innerText = "Data tidak ditemukan di Q-Net.";
+            document.getElementById('status').style.color = "var(--red)";
+            
+            // Efek Getar/Merah jika tidak ditemukan
+            ajInput.style.borderColor = "var(--red)";
+            setTimeout(() => { ajInput.style.borderColor = "var(--gold)"; }, 500);
+        }
+    } catch (err) {
+        console.log("SENTINEL: " + err.message);
+        document.getElementById('status').innerText = "SENTINEL: Jalankan python3 indexer.py dulu!";
+    }
+}
+
 // Tambahkan ini di bawah baris document.getElementById('status')...
 input.style.borderColor = "var(--neon)";
 setTimeout(() => { input.style.borderColor = "var(--gold)"; }, 500);
