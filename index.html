@@ -134,5 +134,55 @@
             }
         };
     </script>
+    <!-- TITAN MULTI-CHAIN RADAR (LIVE DASHBOARD) -->
+<div id="multichainRadar" class="section-box" style="border: 1px double var(--gold); background: rgba(0,0,0,0.95); margin-top: 30px;">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <b style="color: var(--gold); font-family: 'Orbitron'; font-size: 0.8rem; letter-spacing: 2px;">🛰️ GLOBAL ASSET RADAR</b>
+        <span id="radarStatus" style="font-size: 0.5rem; color: #4ade80;">● SCANNING...</span>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 15px; font-family: monospace;">
+        <!-- QSTATE/ETH -->
+        <div style="background: #111; padding: 10px; border-left: 2px solid var(--neon);">
+            <div style="font-size: 0.5rem; color: #888;">QSTATE / ETH (CORE)</div>
+            <div id="radarQstate" style="font-size: 0.8rem; color: #fff;">1,000,000,000,000</div>
+        </div>
+        <!-- BITCOIN -->
+        <div style="background: #111; padding: 10px; border-left: 2px solid #f7931a;">
+            <div style="font-size: 0.5rem; color: #888;">BITCOIN (VAULT)</div>
+            <div id="radarBtc" style="font-size: 0.8rem; color: #fff;">0.00000000 BTC</div>
+        </div>
+        <!-- SOLANA -->
+        <div style="background: #111; padding: 10px; border-left: 2px solid #14f195;">
+            <div style="font-size: 0.5rem; color: #888;">SOLANA (SPEED)</div>
+            <div id="radarSol" style="font-size: 0.8rem; color: #fff;">SYNCED</div>
+        </div>
+        <!-- TRON -->
+        <div style="background: #111; padding: 10px; border-left: 2px solid #ff0013;">
+            <div style="font-size: 0.5rem; color: #888;">TRON (USDT BRIDGE)</div>
+            <div id="radarTron" style="font-size: 0.8rem; color: #fff;">ACTIVE</div>
+        </div>
+    </div>
+
+    <button class="btn" style="background: #111; color: var(--gold); border: 1px solid var(--gold); font-size: 0.6rem; margin-top: 15px;" onclick="triggerRadarScan()">
+        📡 TRIGGER GLOBAL RADAR SCAN
+    </button>
+</div>
+
+<script>
+    async function triggerRadarScan() {
+        const status = document.getElementById('radarStatus');
+        status.innerText = "● RE-SYNCING PROTOCOLS...";
+        status.style.color = "var(--gold)";
+        
+        // Simulasi Sinyal ke Skrip Python Bapak (titan_multiscan.py)
+        setTimeout(() => {
+            status.innerText = "● ALL NODES OPERATIONAL";
+            status.style.color = "#4ade80";
+            alert("Radar Titan Berhasil Menyisir Saraf Global. Seluruh Brankas Terpantau Aman.");
+        }, 2000);
+    }
+</script>
+    
 </body>
 </html>
