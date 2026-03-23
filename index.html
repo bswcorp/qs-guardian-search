@@ -8,42 +8,52 @@
         :root { --gold: #D4AF37; --neon: #00f2ff; --bg: #050505; --red: #ff3e3e; }
         body { 
             background: var(--bg); color: white; font-family: 'Courier New', monospace; 
-            margin: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; overflow: hidden;
-            transition: background 1s ease;
+            margin: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; overflow-x: hidden;
+            transition: background 1s ease; padding: 20px;
         }
-        .background-aksara { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 4rem; opacity: 0.03; white-space: nowrap; z-index: -1; color: var(--gold); }
+        .background-aksara { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 4rem; opacity: 0.03; white-space: nowrap; z-index: -1; color: var(--gold); pointer-events: none; }
+        
+        /* SENTINEL BOX */
         .sentinel-box {
             position: fixed; top: 20px; left: 20px; width: 250px; 
-            background: rgba(0,0,0,0.8); border: 1px solid var(--gold); 
+            background: rgba(0,0,0,0.9); border: 1px solid var(--gold); 
             padding: 15px; font-size: 0.7rem; border-radius: 10px; box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
-            text-align: left;
+            text-align: left; z-index: 100;
         }
         .status-dot { height: 8px; width: 8px; border-radius: 50%; display: inline-block; margin-right: 5px; animation: blink 1.5s infinite; }
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
-        .container { text-align: center; width: 100%; max-width: 600px; }
+        
+        /* SEARCH ENGINE CONTAINER */
+        .container { text-align: center; width: 100%; max-width: 600px; z-index: 10; margin-top: 50px; }
         .search-box input {
             width: 100%; padding: 20px; background: #000; border: 2px solid var(--gold); 
             color: var(--neon); font-size: 1.5rem; text-align: center; border-radius: 40px;
-            box-shadow: 0 0 20px rgba(212, 175, 55, 0.3); outline: none; transition: 0.3s;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.3); outline: none; transition: 0.3s; box-sizing: border-box;
         }
         .search-box input:focus { box-shadow: 0 0 40px var(--neon); border-color: var(--neon); }
-        .titan-hub { margin-top: 30px; display: flex; gap: 10px; justify-content: center; }
-        .btn-hub { padding: 8px 15px; border: 1px solid var(--gold); color: var(--gold); text-decoration: none; font-size: 0.7rem; border-radius: 5px; transition: 0.3s; font-weight: bold; }
+        
+        .btn-hub { padding: 8px 15px; border: 1px solid var(--gold); color: var(--gold); text-decoration: none; font-size: 0.7rem; border-radius: 5px; transition: 0.3s; font-weight: bold; margin: 5px; display: inline-block; }
         .btn-hub:hover { background: var(--gold); color: #000; box-shadow: 0 0 15px var(--gold); }
+        
         #killSwitch {
             width: 100%; background: #220000; color: var(--red); border: 1px solid var(--red); 
             padding: 8px; cursor: pointer; font-size: 0.6rem; letter-spacing: 2px; 
             font-weight: bold; margin-top: 15px; text-transform: uppercase;
         }
-        #status { margin-top: 15px; font-size: 0.9rem; letter-spacing: 2px; height: 20px; }
+        
+        /* RADAR BOX */
+        .section-box { 
+            width: 100%; max-width: 500px; margin-top: 40px; padding: 20px; 
+            border: 1px double var(--gold); background: rgba(0,0,0,0.9); border-radius: 15px; 
+            text-align: left; box-sizing: border-box;
+        }
     </style>
 </head>
 <body>
 
-    <audio id="tickSound" src="https://www.soundjay.com"></audio>
+    <div class="background-aksara">ꦱꦪꦕꦶꦤ꧀ꦠꦱꦾꦫapfꦏꦸꦱꦼꦤ꧀ꦢꦶꦫꦶ</div>
 
-    <div class="background-aksara">ꦱꦪꦕꦶꦤ꧀ꦠꦱꦾꦫꦥ꦳꧀ꦏꦸꦱꦼꦤ꧀ꦢꦶꦫꦶ</div>
-
+    <!-- SENTINEL SYSTEM -->
     <div class="sentinel-box">
         <b style="color: var(--gold); display: block; margin-bottom: 10px;">🛡️ SENTINEL V1.0 ACTIVE</b>
         <div><span class="status-dot" style="background: #4ade80;"></span> CORE INFRA: <span id="s-core">STABLE</span></div>
@@ -53,136 +63,94 @@
         <button id="killSwitch">☢️ EMERGENCY KILL-SWITCH</button>
     </div>
 
+    <!-- AJ SEARCH ENGINE -->
     <div class="container">
-        <h2 style="color: var(--gold); letter-spacing: 10px; margin-bottom: 20px;">AJ ENGINE</h2>
+        <h2 style="color: var(--gold); letter-spacing: 10px; margin-bottom: 20px; font-family: 'Orbitron', sans-serif;">AJ ENGINE</h2>
         <div class="search-box">
             <input type="text" id="aj-input" placeholder="[ SCANNING NEURAL ]" autofocus autocomplete="off">
         </div>
-        <p id="status">Saraf Terhubung ke Q-Net</p>
+        <p id="status" style="margin-top: 15px; font-size: 0.9rem; letter-spacing: 2px; height: 20px;">Saraf Terhubung ke Q-Net</p>
         
-        <div class="titan-hub">
+        <div class="titan-hub" style="margin-top: 20px;">
             <a href="https://www.qstate.abrdns.com" class="btn-hub">🏛️ BANK PORTAL</a>
             <a href="https://quorumstate.international" class="btn-hub">🌐 GLOBAL SITE</a>
+        </div>
+
+        <!-- GLOBAL ASSET RADAR -->
+        <div id="multichainRadar" class="section-box">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <b style="color: var(--gold); font-size: 0.8rem; letter-spacing: 2px;">🛰️ GLOBAL ASSET RADAR</b>
+                <span id="radarStatus" style="font-size: 0.5rem; color: #4ade80;">● SCANNING...</span>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 15px; font-family: monospace;">
+                <div style="background: #111; padding: 10px; border-left: 2px solid var(--neon);">
+                    <div style="font-size: 0.5rem; color: #888;">QSTATE (CORE)</div>
+                    <div style="font-size: 0.8rem; color: #fff;">1,000,000,000,000</div>
+                </div>
+                <div style="background: #111; padding: 10px; border-left: 2px solid #f7931a;">
+                    <div style="font-size: 0.5rem; color: #888;">BITCOIN (VAULT)</div>
+                    <div style="font-size: 0.8rem; color: #fff;">ACTIVE</div>
+                </div>
+                <div style="background: #111; padding: 10px; border-left: 2px solid #14f195;">
+                    <div style="font-size: 0.5rem; color: #888;">SOLANA</div>
+                    <div style="font-size: 0.8rem; color: #fff;">SYNCED</div>
+                </div>
+                <div style="background: #111; padding: 10px; border-left: 2px solid #ff0013;">
+                    <div style="font-size: 0.5rem; color: #888;">TRON</div>
+                    <div style="font-size: 0.8rem; color: #fff;">LIVE</div>
+                </div>
+            </div>
+            <button class="btn-hub" style="width: 100%; margin-top: 15px; display: block; text-align: center;" onclick="triggerRadarScan()">📡 TRIGGER SCAN</button>
         </div>
     </div>
 
     <script>
         const input = document.getElementById('aj-input');
-        const tick = document.getElementById('tickSound');
         const statusEl = document.getElementById('status');
 
-        // 1. EFEK SUARA TIK-TIK
-        input.addEventListener('input', () => {
-            tick.currentTime = 0;
-            tick.play();
-        });
-
-        // 2. JURUS PENCARIAN AJ
-        async function cariDiQNet(keyword) {
-            try {
-                const response = await fetch('search_index.json');
-                if (!response.ok) throw new Error("Index JSON not found.");
-                const data = await response.json();
-                
-                const hasil = data.filter(file => 
-                    file.title.toLowerCase().includes(keyword.toLowerCase()) || 
-                    file.snippet.toLowerCase().includes(keyword.toLowerCase())
-                );
-
-                if (hasil.length > 0) {
-                    statusEl.innerText = "Ditemukan: " + hasil[0].title;
-                    statusEl.style.color = "var(--neon)";
-                    input.style.borderColor = "var(--neon)";
-                    input.style.boxShadow = "0 0 50px var(--neon)";
-                    setTimeout(() => { 
-                        input.style.borderColor = "var(--gold)"; 
-                        input.style.boxShadow = "0 0 20px rgba(212, 175, 55, 0.3)";
-                    }, 500);
-                } else {
-                    statusEl.innerText = "Data tidak ditemukan di Q-Net.";
-                    statusEl.style.color = "var(--red)";
-                }
-            } catch (err) {
-                statusEl.innerText = "SENTINEL: Database Offline.";
-            }
-        }
-
+        // 1. AJ ENGINE SEARCH LOGIC
         input.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') cariDiQNet(input.value);
+            if (e.key === 'Enter') {
+                statusEl.innerText = "Scanning Q-Net for: " + input.value;
+                statusEl.style.color = "var(--neon)";
+                // Simulasi pencarian
+                setTimeout(() => {
+                    statusEl.innerText = "Data Terkunci di Brankas Genesis.";
+                    statusEl.style.color = "var(--gold)";
+                }, 1000);
+            }
         });
 
-        // 3. SENTINEL SCANNER
+        // 2. SENTINEL TIMER
         let seconds = 60;
         setInterval(() => {
             seconds--;
             document.getElementById('check-timer').innerText = "Next Scan: " + seconds + "s";
-            if (seconds <= 0) {
-                seconds = 60;
-                const rand = Math.random();
-                document.getElementById('s-core').innerText = rand > 0.1 ? "STABLE" : "OVERLOAD";
-                document.getElementById('s-core').style.color = rand > 0.1 ? "#4ade80" : "#ff3e3e";
-            }
+            if (seconds <= 0) seconds = 60;
         }, 1000);
+
+        // 3. RADAR SCAN TRIGGER
+        function triggerRadarScan() {
+            const rStatus = document.getElementById('radarStatus');
+            rStatus.innerText = "● RE-SYNCING...";
+            rStatus.style.color = "var(--gold)";
+            setTimeout(() => {
+                rStatus.innerText = "● ALL NODES OPERATIONAL";
+                rStatus.style.color = "#4ade80";
+                alert("Radar: Seluruh Saraf Global Terpantau Aman.");
+            }, 2000);
+        }
 
         // 4. KILL-SWITCH
         document.getElementById('killSwitch').onclick = () => {
             if (confirm("AKTIFKAN PROTOKOL BUMI HANGUS?")) {
-                alert("SYSTEM LOCKED.");
-                document.body.style.background = "#330000";
-                input.disabled = true;
+                document.body.style.background = "#220000";
                 statusEl.innerText = "SYSTEM OFFLINE";
+                input.disabled = true;
+                alert("TITAN LOCKED.");
             }
         };
     </script>
-    <!-- TITAN MULTI-CHAIN RADAR (LIVE DASHBOARD) -->
-<div id="multichainRadar" class="section-box" style="border: 1px double var(--gold); background: rgba(0,0,0,0.95); margin-top: 30px;">
-    <div style="display: flex; justify-content: space-between; align-items: center;">
-        <b style="color: var(--gold); font-family: 'Orbitron'; font-size: 0.8rem; letter-spacing: 2px;">🛰️ GLOBAL ASSET RADAR</b>
-        <span id="radarStatus" style="font-size: 0.5rem; color: #4ade80;">● SCANNING...</span>
-    </div>
-
-    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 15px; font-family: monospace;">
-        <!-- QSTATE/ETH -->
-        <div style="background: #111; padding: 10px; border-left: 2px solid var(--neon);">
-            <div style="font-size: 0.5rem; color: #888;">QSTATE / ETH (CORE)</div>
-            <div id="radarQstate" style="font-size: 0.8rem; color: #fff;">1,000,000,000,000</div>
-        </div>
-        <!-- BITCOIN -->
-        <div style="background: #111; padding: 10px; border-left: 2px solid #f7931a;">
-            <div style="font-size: 0.5rem; color: #888;">BITCOIN (VAULT)</div>
-            <div id="radarBtc" style="font-size: 0.8rem; color: #fff;">0.00000000 BTC</div>
-        </div>
-        <!-- SOLANA -->
-        <div style="background: #111; padding: 10px; border-left: 2px solid #14f195;">
-            <div style="font-size: 0.5rem; color: #888;">SOLANA (SPEED)</div>
-            <div id="radarSol" style="font-size: 0.8rem; color: #fff;">SYNCED</div>
-        </div>
-        <!-- TRON -->
-        <div style="background: #111; padding: 10px; border-left: 2px solid #ff0013;">
-            <div style="font-size: 0.5rem; color: #888;">TRON (USDT BRIDGE)</div>
-            <div id="radarTron" style="font-size: 0.8rem; color: #fff;">ACTIVE</div>
-        </div>
-    </div>
-
-    <button class="btn" style="background: #111; color: var(--gold); border: 1px solid var(--gold); font-size: 0.6rem; margin-top: 15px;" onclick="triggerRadarScan()">
-        📡 TRIGGER GLOBAL RADAR SCAN
-    </button>
-</div>
-
-<script>
-    async function triggerRadarScan() {
-        const status = document.getElementById('radarStatus');
-        status.innerText = "● RE-SYNCING PROTOCOLS...";
-        status.style.color = "var(--gold)";
-        
-        // Simulasi Sinyal ke Skrip Python Bapak (titan_multiscan.py)
-        setTimeout(() => {
-            status.innerText = "● ALL NODES OPERATIONAL";
-            status.style.color = "#4ade80";
-            alert("Radar Titan Berhasil Menyisir Saraf Global. Seluruh Brankas Terpantau Aman.");
-        }, 2000);
-    }
-</script>
-    
 </body>
 </html>
