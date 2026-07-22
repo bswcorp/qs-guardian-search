@@ -1,156 +1,866 @@
-<!DOCTYPE html>
-<html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Q-STATE | AJ SENTINEL ENGINE</title>
-    <style>
-        :root { --gold: #D4AF37; --neon: #00f2ff; --bg: #050505; --red: #ff3e3e; }
-        body { 
-            background: var(--bg); color: white; font-family: 'Courier New', monospace; 
-            margin: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; overflow-x: hidden;
-            transition: background 1s ease; padding: 20px;
-        }
-        .background-aksara { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 4rem; opacity: 0.03; white-space: nowrap; z-index: -1; color: var(--gold); pointer-events: none; }
-        
-        /* SENTINEL BOX */
-        .sentinel-box {
-            position: fixed; top: 20px; left: 20px; width: 250px; 
-            background: rgba(0,0,0,0.9); border: 1px solid var(--gold); 
-            padding: 15px; font-size: 0.7rem; border-radius: 10px; box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
-            text-align: left; z-index: 100;
-        }
-        .status-dot { height: 8px; width: 8px; border-radius: 50%; display: inline-block; margin-right: 5px; animation: blink 1.5s infinite; }
-        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
-        
-        /* SEARCH ENGINE CONTAINER */
-        .container { text-align: center; width: 100%; max-width: 600px; z-index: 10; margin-top: 50px; }
-        .search-box input {
-            width: 100%; padding: 20px; background: #000; border: 2px solid var(--gold); 
-            color: var(--neon); font-size: 1.5rem; text-align: center; border-radius: 40px;
-            box-shadow: 0 0 20px rgba(212, 175, 55, 0.3); outline: none; transition: 0.3s; box-sizing: border-box;
-        }
-        .search-box input:focus { box-shadow: 0 0 40px var(--neon); border-color: var(--neon); }
-        
-        .btn-hub { padding: 8px 15px; border: 1px solid var(--gold); color: var(--gold); text-decoration: none; font-size: 0.7rem; border-radius: 5px; transition: 0.3s; font-weight: bold; margin: 5px; display: inline-block; }
-        .btn-hub:hover { background: var(--gold); color: #000; box-shadow: 0 0 15px var(--gold); }
-        
-        #killSwitch {
-            width: 100%; background: #220000; color: var(--red); border: 1px solid var(--red); 
-            padding: 8px; cursor: pointer; font-size: 0.6rem; letter-spacing: 2px; 
-            font-weight: bold; margin-top: 15px; text-transform: uppercase;
-        }
-        
-        /* RADAR BOX */
-        .section-box { 
-            width: 100%; max-width: 500px; margin-top: 40px; padding: 20px; 
-            border: 1px double var(--gold); background: rgba(0,0,0,0.9); border-radius: 15px; 
-            text-align: left; box-sizing: border-box;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>
+Q-STATE | SSPA HUMAN LEDGER PROTOTYPE
+</title>
+
+<meta name="description" content="
+SSPA Human Ledger - AI Unstructured Data Intelligent System.
+Protect Identity. Preserve Evidence. Enable Justice.
+Powered by Quorum State International.
+">
+
+<style>
+
+:root {
+    --gold: #D4AF37;
+    --neon: #00f2ff;
+    --bg: #050505;
+    --red: #ff3e3e;
+    --green: #4ade80;
+    --white: #ffffff;
+}
+
+
+* {
+    box-sizing: border-box;
+}
+
+
+body {
+    margin: 0;
+    padding: 20px;
+    min-height: 100vh;
+    background:
+    radial-gradient(circle at top, #101010, #000);
+    color: white;
+    font-family: 'Courier New', monospace;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-x: hidden;
+}
+
+
+/* BACKGROUND SYMBOL */
+
+.background-aksara {
+
+    position: fixed;
+    top: 50%;
+    left: 50%;
+
+    transform:
+    translate(-50%,-50%);
+
+    font-size: 5rem;
+
+    color: var(--gold);
+
+    opacity:0.04;
+
+    z-index:-1;
+
+    white-space:nowrap;
+
+}
+
+
+/* TOP SENTINEL */
+
+.sentinel-box {
+
+    position: fixed;
+
+    top:20px;
+    left:20px;
+
+    width:260px;
+
+    background:
+    rgba(0,0,0,0.88);
+
+    border:1px solid var(--gold);
+
+    border-radius:15px;
+
+    padding:15px;
+
+    font-size:.75rem;
+
+    box-shadow:
+    0 0 20px rgba(212,175,55,.3);
+
+    z-index:100;
+
+}
+
+
+.sentinel-title {
+
+    color:var(--gold);
+
+    font-size:.9rem;
+
+    margin-bottom:10px;
+
+    letter-spacing:2px;
+
+}
+
+
+.status-dot {
+
+    width:8px;
+    height:8px;
+
+    display:inline-block;
+
+    border-radius:50%;
+
+    margin-right:5px;
+
+    animation:
+    blink 1.5s infinite;
+
+}
+
+
+@keyframes blink {
+
+    50% {
+        opacity:.3;
+    }
+
+}
+
+
+
+/* MAIN CONTAINER */
+
+.container {
+
+    width:100%;
+
+    max-width:650px;
+
+    margin-top:80px;
+
+    text-align:center;
+
+}
+
+
+
+/* HEADER */
+
+.logo {
+
+    color:var(--gold);
+
+    font-size:2rem;
+
+    letter-spacing:8px;
+
+}
+
+
+.subtitle {
+
+    color:var(--neon);
+
+    letter-spacing:3px;
+
+    font-size:.9rem;
+
+}
+
+
+
+/* SSPA CARD */
+
+.sspa-card {
+
+    margin:30px auto;
+
+    padding:25px;
+
+    background:
+    rgba(0,0,0,.85);
+
+    border:
+
+    1px solid var(--neon);
+
+    border-radius:20px;
+
+
+    box-shadow:
+
+    0 0 30px rgba(0,242,255,.25);
+
+}
+
+
+.sspa-card h2 {
+
+    color:var(--neon);
+
+    letter-spacing:4px;
+
+}
+
+
+.sspa-card p {
+
+    color:#ddd;
+
+    line-height:1.7;
+
+}
+
+
+
+/* FEATURE TAG */
+
+.features {
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    justify-content:center;
+
+    gap:10px;
+
+}
+
+
+.feature {
+
+    padding:10px 15px;
+
+    border:
+
+    1px solid var(--gold);
+
+    border-radius:30px;
+
+    color:var(--gold);
+
+    font-size:.75rem;
+
+}
+
+
+
+/* BIG PROTOTYPE BUTTON */
+
+
+.prototype-btn {
+
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+
+    width:330px;
+
+    height:75px;
+
+
+    margin:25px;
+
+
+    border-radius:50px;
+
+
+    background:
+
+    linear-gradient(
+    45deg,
+    #ff003c,
+    #ffcc00
+    );
+
+
+    color:#000;
+
+
+    font-weight:bold;
+
+    font-size:1.1rem;
+
+
+    text-decoration:none;
+
+
+    border:3px solid white;
+
+
+    box-shadow:
+
+    0 0 25px red,
+    0 0 40px gold;
+
+
+    animation:pulse 1.5s infinite;
+
+}
+
+
+
+@keyframes pulse {
+
+    50% {
+
+        transform:scale(1.05);
+
+    }
+
+}
+
+
+
+/* SEARCH */
+
+.search-box input {
+
+
+    width:100%;
+
+    padding:20px;
+
+    background:#000;
+
+
+    border:
+
+    2px solid var(--gold);
+
+
+    border-radius:40px;
+
+
+    color:var(--neon);
+
+
+    text-align:center;
+
+
+    font-size:1.3rem;
+
+
+}
+
+
+
+/* RADAR */
+
+.section-box {
+
+
+    margin-top:35px;
+
+
+    padding:20px;
+
+
+    background:
+
+    rgba(0,0,0,.9);
+
+
+    border:
+
+    1px double var(--gold);
+
+
+    border-radius:15px;
+
+
+}
+
+
+
+/* BUTTON */
+
+
+.btn-hub {
+
+
+    display:inline-block;
+
+
+    padding:10px 18px;
+
+
+    margin:5px;
+
+
+    border:
+
+    1px solid var(--gold);
+
+
+    border-radius:8px;
+
+
+    color:var(--gold);
+
+
+    text-decoration:none;
+
+
+    font-size:.75rem;
+
+
+}
+
+
+
+.btn-hub:hover {
+
+
+    background:var(--gold);
+
+
+    color:black;
+
+
+}
+
+
+</style>
+
 </head>
-<body>
 
-    <div class="background-aksara">ꦱꦪꦕꦶꦤ꧀ꦠꦱꦾꦫapfꦏꦸꦱꦼꦤ꧀ꦢꦶꦫꦶ</div>
 
-    <!-- SENTINEL SYSTEM -->
-    <div class="sentinel-box">
-        <b style="color: var(--gold); display: block; margin-bottom: 10px;">🛡️ SENTINEL V1.0 ACTIVE</b>
-        <div><span class="status-dot" style="background: #4ade80;"></span> CORE INFRA: <span id="s-core">STABLE</span></div>
-        <div><span class="status-dot" style="background: var(--neon);"></span> SENSOR H2K: <span id="s-sensor">CONNECTED</span></div>
-        <div><span class="status-dot" style="background: var(--gold);"></span> DATABASE: <span id="s-db">SYNCED</span></div>
-        <div id="check-timer" style="margin-top: 10px; color: #666; font-size: 0.6rem;">Next Scan: 60s</div>
-        <button id="killSwitch">☢️ EMERGENCY KILL-SWITCH</button>
+<div class="background-aksara">
+    SSPA • QUORUM STATE • HUMAN LEDGER
+</div>
+
+
+<!-- SENTINEL MONITOR -->
+
+<div class="sentinel-box">
+
+    <div class="sentinel-title">
+        🛡️ SSPA SENTINEL V1.0
     </div>
 
-    <!-- AJ SEARCH ENGINE -->
-    <div class="container">
-        <h2 style="color: var(--gold); letter-spacing: 10px; margin-bottom: 20px; font-family: 'Orbitron', sans-serif;">AJ ENGINE</h2>
+    <div>
+        <span class="status-dot" style="background:#4ade80;"></span>
+        CORE INFRA : ACTIVE
+    </div>
+
+    <div>
+        <span class="status-dot" style="background:#00f2ff;"></span>
+        AI ENGINE : ONLINE
+    </div>
+
+    <div>
+        <span class="status-dot" style="background:#D4AF37;"></span>
+        EVIDENCE VAULT : SYNCED
+    </div>
+
+    <div style="margin-top:10px;color:#777;">
+        Human Data Protection Layer
+    </div>
+
+</div>
+
+
+
+<!-- MAIN -->
+
+<div class="container">
+
+
+    <div class="logo">
+        Q-STATE
+    </div>
+
+
+    <div class="subtitle">
+        SSPA HUMAN LEDGER PROTOTYPE
+    </div>
+
+
+
+    <!-- PROJECT INTRO -->
+
+    <div class="sspa-card">
+
+        <h2>
+        🛡️ SSPA
+        </h2>
+
+
+        <p>
+        Sovereign Secure Preservation Architecture
+        </p>
+
+
+        <p>
+        Sebuah sistem AI untuk mengubah data tidak terstruktur
+        seperti dokumen, bukti digital, dan catatan manusia
+        menjadi informasi yang terlindungi,
+        terverifikasi, dan dapat digunakan untuk mendukung
+        proses keadilan.
+        </p>
+
+
+        <p style="color:#00f2ff;">
+        Protect Identity.
+        Preserve Evidence.
+        Enable Justice.
+        </p>
+
+
+
+        <div class="features">
+
+
+            <div class="feature">
+                🔐 Identity Protection
+            </div>
+
+
+            <div class="feature">
+                📂 Evidence Preservation
+            </div>
+
+
+            <div class="feature">
+                🤖 AI Data Intelligence
+            </div>
+
+
+            <div class="feature">
+                🌐 Sovereign Infrastructure
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+
+
+
+    <!-- CONNECTION BUTTON -->
+
+    <a 
+    class="prototype-btn"
+    href="https://www.qstate.abrdns.com">
+
+    🔴 ENTER SSPA PROTOTYPE
+
+    </a>
+
+
+
+    <div>
+
+        <a 
+        class="btn-hub"
+        href="https://quorumstate.international">
+
+        🏛️ QUORUM STATE INTERNATIONAL
+
+        </a>
+
+
+
+        <a 
+        class="btn-hub"
+        href="https://www.qstate.abrdns.com">
+
+        🌐 QS BROWSER
+
+        </a>
+
+    </div>
+
+
+
+
+    <!-- AI SEARCH ENGINE -->
+
+
+    <div class="section-box">
+
+
+        <h3 style="color:#D4AF37;">
+            AJ AI SENTINEL ENGINE
+        </h3>
+
+
+        <p style="font-size:.8rem;color:#aaa;">
+            Unstructured Data Intelligence System
+        </p>
+
+
+
         <div class="search-box">
-            <input type="text" id="aj-input" placeholder="[ SCANNING NEURAL ]" autofocus autocomplete="off">
-        </div>
-        <p id="status" style="margin-top: 15px; font-size: 0.9rem; letter-spacing: 2px; height: 20px;">Saraf Terhubung ke Q-Net</p>
-        
-        <div class="titan-hub" style="margin-top: 20px;">
-            <a href="https://www.qstate.abrdns.com" class="btn-hub">🏛️ BANK PORTAL</a>
-            <a href="https://quorumstate.international" class="btn-hub">🌐 GLOBAL SITE</a>
+
+            <input
+            id="aj-input"
+            type="text"
+            placeholder="[ SCAN HUMAN DATA ]">
+
         </div>
 
-        <!-- GLOBAL ASSET RADAR -->
-        <div id="multichainRadar" class="section-box">
-            <div style="display: flex; justify-content: space-between; align-items: center;">
-                <b style="color: var(--gold); font-size: 0.8rem; letter-spacing: 2px;">🛰️ GLOBAL ASSET RADAR</b>
-                <span id="radarStatus" style="font-size: 0.5rem; color: #4ade80;">● SCANNING...</span>
-            </div>
 
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 15px; font-family: monospace;">
-                <div style="background: #111; padding: 10px; border-left: 2px solid var(--neon);">
-                    <div style="font-size: 0.5rem; color: #888;">QSTATE (CORE)</div>
-                    <div style="font-size: 0.8rem; color: #fff;">1,000,000,000,000</div>
-                </div>
-                <div style="background: #111; padding: 10px; border-left: 2px solid #f7931a;">
-                    <div style="font-size: 0.5rem; color: #888;">BITCOIN (VAULT)</div>
-                    <div style="font-size: 0.8rem; color: #fff;">ACTIVE</div>
-                </div>
-                <div style="background: #111; padding: 10px; border-left: 2px solid #14f195;">
-                    <div style="font-size: 0.5rem; color: #888;">SOLANA</div>
-                    <div style="font-size: 0.8rem; color: #fff;">SYNCED</div>
-                </div>
-                <div style="background: #111; padding: 10px; border-left: 2px solid #ff0013;">
-                    <div style="font-size: 0.5rem; color: #888;">TRON</div>
-                    <div style="font-size: 0.8rem; color: #fff;">LIVE</div>
-                </div>
-            </div>
-            <button class="btn-hub" style="width: 100%; margin-top: 15px; display: block; text-align: center;" onclick="triggerRadarScan()">📡 TRIGGER SCAN</button>
-        </div>
+        <p id="status">
+            AI Core Connected to Q-NET
+        </p>
+
+
     </div>
 
-    <script>
-        const input = document.getElementById('aj-input');
-        const statusEl = document.getElementById('status');
 
-        // 1. AJ ENGINE SEARCH LOGIC
-        input.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
-                statusEl.innerText = "Scanning Q-Net for: " + input.value;
-                statusEl.style.color = "var(--neon)";
-                // Simulasi pencarian
-                setTimeout(() => {
-                    statusEl.innerText = "Data Terkunci di Brankas Genesis.";
-                    statusEl.style.color = "var(--gold)";
-                }, 1000);
-            }
-        });
 
-        // 2. SENTINEL TIMER
-        let seconds = 60;
-        setInterval(() => {
-            seconds--;
-            document.getElementById('check-timer').innerText = "Next Scan: " + seconds + "s";
-            if (seconds <= 0) seconds = 60;
-        }, 1000);
 
-        // 3. RADAR SCAN TRIGGER
-        function triggerRadarScan() {
-            const rStatus = document.getElementById('radarStatus');
-            rStatus.innerText = "● RE-SYNCING...";
-            rStatus.style.color = "var(--gold)";
-            setTimeout(() => {
-                rStatus.innerText = "● ALL NODES OPERATIONAL";
-                rStatus.style.color = "#4ade80";
-                alert("Radar: Seluruh Saraf Global Terpantau Aman.");
-            }, 2000);
-        }
 
-        // 4. KILL-SWITCH
-        document.getElementById('killSwitch').onclick = () => {
-            if (confirm("AKTIFKAN PROTOKOL BUMI HANGUS?")) {
-                document.body.style.background = "#220000";
-                statusEl.innerText = "SYSTEM OFFLINE";
-                input.disabled = true;
-                alert("TITAN LOCKED.");
-            }
-        };
-    </script>
-</body>
-</html>
+
+    <!-- GLOBAL RADAR -->
+
+
+    <div class="section-box">
+
+
+        <h3 style="color:#D4AF37;">
+        🛰️ SSPA GLOBAL DATA RADAR
+        </h3>
+
+
+        <div style="
+        display:grid;
+        grid-template-columns:1fr 1fr;
+        gap:10px;">
+
+
+
+            <div style="
+            background:#111;
+            padding:15px;
+            border-left:3px solid #00f2ff;">
+
+            <small>
+            AI PROCESSING
+            </small>
+
+            <br>
+
+            ACTIVE
+
+            </div>
+
+
+
+            <div style="
+            background:#111;
+            padding:15px;
+            border-left:3px solid #D4AF37;">
+
+            <small>
+            EVIDENCE HASH
+            </small>
+
+            <br>
+
+            VERIFIED
+
+            </div>
+
+
+
+            <div style="
+            background:#111;
+            padding:15px;
+            border-left:3px solid #4ade80;">
+
+            <small>
+            IDENTITY LAYER
+            </small>
+
+            <br>
+
+            PROTECTED
+
+            </div>
+
+
+
+            <div style="
+            background:#111;
+            padding:15px;
+            border-left:3px solid red;">
+
+            <small>
+            NETWORK
+            </small>
+
+            <br>
+
+            ONLINE
+
+            </div>
+
+
+
+        </div>
+
+
+
+    </div>
+
+
+
+</div>
+<!-- FOOTER -->
+
+<footer style="
+margin-top:50px;
+padding:25px;
+text-align:center;
+width:100%;
+border-top:1px solid #D4AF37;
+color:#888;
+font-size:.75rem;
+">
+
+    <div style="
+    color:#D4AF37;
+    letter-spacing:3px;
+    margin-bottom:10px;
+    ">
+        QUORUM STATE INTERNATIONAL
+    </div>
+
+
+    <div>
+        SSPA HUMAN LEDGER • AI UNSTRUCTURED DATA INTELLIGENCE SYSTEM
+    </div>
+
+
+    <div style="margin-top:10px;">
+        Protect Identity • Preserve Evidence • Enable Justice
+    </div>
+
+
+</footer>
+
+
+
+
+<script>
+
+
+// AI SEARCH SIMULATION
+
+const input =
+document.getElementById("aj-input");
+
+
+const status =
+document.getElementById("status");
+
+
+
+if(input){
+
+input.addEventListener(
+"keypress",
+function(e){
+
+
+if(e.key==="Enter"){
+
+
+status.innerHTML =
+"🔍 ANALYZING UNSTRUCTURED DATA : "
++
+input.value;
+
+
+status.style.color =
+"#00f2ff";
+
+
+
+setTimeout(()=>{
+
+
+status.innerHTML =
+"✅ DATA PRESERVED IN SSPA KNOWLEDGE VAULT";
+
+
+status.style.color =
+"#D4AF37";
+
+
+
+},2000);
+
+
+
+}
+
+
+});
+
+
+}
+
+
+
+
+// SENTINEL CLOCK
+
+
+let scan = 60;
+
+
+setInterval(()=>{
+
+
+scan--;
+
+
+if(scan<=0){
+
+scan=60;
+
+}
+
+
+},1000);
+
+
+
+
+// PROTOTYPE SECURITY MESSAGE
+
+
+console.log(
+"SSPA Human Ledger Prototype Initialized"
+);
+
+
+console.log(
+"Quorum State International Connected"
+);
+
+
+
+</script>
